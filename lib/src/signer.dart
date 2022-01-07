@@ -36,7 +36,7 @@ class Signer {
   }) {
     final securityHeaders = {
       if (headers != null) ...headers,
-      if (csecurityToken != null) ...{
+      if (securityToken != null) ...{
         'x-oss-security-token': securityToken,
       }
     };
