@@ -62,14 +62,14 @@ abstract class OSSObject {
       : _mediaType.type;
 
   String get name =>
-      (uuid ?? Uuid().v1()) + (type == 'file' ? '' : '.${_mediaType.subtype}');
+      (uuid ?? Uuid().v1()) + (type == 'file' ? '' : '');
 
   String get folderPath => [
         type,
         DateFormat('y/MM/dd').format(DateTime.now()),
       ].join('/');
 
-  String resourcePath(String? path) => '${path ?? folderPath}/$name';
+  String resourcePath(String? path) => path != null && path != '' ? '${path ?? folderPath}/$name' : '/$name';
 
   void uploadSuccessful(String url) {
     this.url = url;
