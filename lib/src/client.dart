@@ -44,6 +44,7 @@ class OSSClient {
     String? bucket,
     String? endpoint,
     String? path,
+    required String securityToken,
   }) async {
     _signer = await verify();
 
@@ -55,6 +56,7 @@ class OSSClient {
       headers: {
         'content-type': object.mediaType.mimeType,
       },
+      securityToken: securityToken
     ).toHeaders();
     try {
       final String url =
