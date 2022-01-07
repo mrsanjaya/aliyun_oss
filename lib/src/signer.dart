@@ -32,11 +32,12 @@ class Signer {
     Map<String, String>? headers,
     String? contentMd5,
     String? dateString,
+    required String securityToken,
   }) {
     final securityHeaders = {
       if (headers != null) ...headers,
-      if (credentials.securityToken != null) ...{
-        'x-oss-security-token': credentials.securityToken!,
+      if (csecurityToken != null) ...{
+        'x-oss-security-token': securityToken,
       }
     };
     final sortedHeaders = _sortByLowerKey(securityHeaders);
@@ -72,7 +73,7 @@ class Signer {
         dateString: date,
         accessKeyId: credentials.accessKeyId,
         signature: signature,
-        securityToken: credentials.securityToken);
+        securityToken: securityToken);
   }
 
   String _buildCanonicalizedResource(
