@@ -69,7 +69,7 @@ abstract class OSSObject {
         DateFormat('y/MM/dd').format(DateTime.now()),
       ].join('/');
 
-  String resourcePath(String? path) => path != null && path != '' ? '${path ?? folderPath}/$name' : '/$name';
+  String resourcePath(String? path) => path != null && path != '' ? '${path ?? folderPath}/$name' : '$name';
 
   void uploadSuccessful(String url) {
     this.url = url;
