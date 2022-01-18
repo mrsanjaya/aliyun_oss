@@ -106,7 +106,7 @@ class OSSClient {
     return _signer!;
   }
   
-    Future<void> getObject(String key,String securityToken,String savepath,
+    Future<void> getObject(String key,String securityToken,String savePath,
       {String? bucket,
         ProgressCallback? onReceiveProgress,
         String? endpoint
