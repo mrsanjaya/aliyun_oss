@@ -106,3 +106,25 @@ class OSSClient {
     return _signer!;
   }
 }
+
+  Future<void> getObject(OSSObject ossObject,
+      {String? bucket,
+        ProgressCallback? onReceiveProgress,
+        String? endpoint,
+        String? savepath
+      }) async{
+    await verify();
+    final Map<String, dynamic> safeHeaders = _signer!.sign(
+      httpMethod: 'GET',
+      resourcePath: '/${bucket ?? this.bucket}/${ossObject.key}'
+    ).toHeaders();
+      final String url = 'https://${bucket ?? this.bucket}.${endpoint ?? this.endpoint}/${ossObject.key}';
+      await _http.download(url, savePath,
+        options: Options(
+          headers: <String, dynamic>{
+            ...safeHeaders,
+          },
+        ),
+          onReceiveProgress: onReceiveProgress
+      );
+  }
