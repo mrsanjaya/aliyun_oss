@@ -106,11 +106,10 @@ class OSSClient {
     return _signer!;
   }
   
-    Future<void> getObject(String key,String securityToken,
+    Future<void> getObject(String key,String securityToken,String savepath,
       {String? bucket,
         ProgressCallback? onReceiveProgress,
-        String? endpoint,
-        String? savepath
+        String? endpoint
       }) async{
     await verify();
     final Map<String, dynamic> safeHeaders = _signer!.sign(
@@ -119,7 +118,7 @@ class OSSClient {
       securityToken: securityToken
     ).toHeaders();
       final String url = 'https://${bucket ?? this.bucket}.${endpoint ?? this.endpoint}/${key}';
-      await _http.download(url, this.savePath,
+      await _http.download(url, savePath,
         options: Options(
           headers: <String, dynamic>{
             ...safeHeaders,
