@@ -119,7 +119,7 @@ class OSSClient {
       securityToken: securityToken
     ).toHeaders();
       final String url = 'https://${bucket ?? this.bucket}.${endpoint ?? this.endpoint}/${key}';
-      await _http.download(url, savePath,
+      await _http.download(url, this.savePath,
         options: Options(
           headers: <String, dynamic>{
             ...safeHeaders,
