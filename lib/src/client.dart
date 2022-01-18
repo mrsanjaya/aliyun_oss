@@ -105,9 +105,8 @@ class OSSClient {
     }
     return _signer!;
   }
-}
-
-  Future<void> getObject(OSSObject ossObject,
+  
+    Future<void> getObject(OSSObject ossObject,
       {String? bucket,
         ProgressCallback? onReceiveProgress,
         String? endpoint,
@@ -128,3 +127,5 @@ class OSSClient {
           onReceiveProgress: onReceiveProgress
       );
   }
+}
+
